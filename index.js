@@ -47,22 +47,23 @@ app.post('/send', async (req, res) => {
             port: 587,
             secure: false,
             auth: {
-              user: testAccount.user,
-              pass: testAccount.pass,
+              user: "idella.smith98@ethereal.email",
+              pass: "WZXku9Cd7P7adsVfdK",
             },
             tls: {
                 rejectUnauthorized: false
             }
         });
 
-        let info = await transporter.sendMail({
-            from: '"Nodemailer contact form" <testAccount.user>', // sender address
+        let options = {
+            from: '"Nodemailer contact form" <idella.smith98@ethereal.email>', // sender address
             to: "bmubarak88@gmail.com", // list of receivers
             subject: "Node Contact Request", // Subject line
             text: "Hello world?", // plain text body
             html: output, // html body
-        });
-        
+        }
+
+        let info = await transporter.sendMail(options);
         console.log("Message sent: %s", info.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
